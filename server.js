@@ -15,14 +15,19 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect(process.env.MONGODB_URI ||"mongodb://localhost/budget_db", {
-  useNewUrlParser: true,
-  useFindAndModify: false
-});
 
 // routes
 app.use(require("./routes/api.js"));
 
-app.listen(process.env.PORT || PORT, () => {
-  console.log(`App running on port ${PORT}!`);
-});
+// app.listen(process.env.PORT || PORT, () => {
+//   console.log(`App running on port ${PORT}!`);
+// });
+
+require('./db')
+  .then(() => app.listen(process.env.PORT || 3001))
+  .catch(err => console.log(err))
+
+
+
+
+
