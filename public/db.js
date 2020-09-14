@@ -18,7 +18,7 @@ request.onerror = event => {
     console.log(event.target.errorCode)
 }
 
-const saveItem = item => {
+const saveRecord = item => {
     const transaction = db.transaction(['pending'], 'readwrite')
     const store = transaction.objectStore('pending')
     store.add(item)
@@ -36,7 +36,7 @@ const checkDatabase = () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: `Bearer ${local.storage.getItem('user')}`
+                    // Authorization: `Bearer ${local.storage.getItem('user')}`
                 },
                 body: JSON.stringify(getAll.result)
             })
